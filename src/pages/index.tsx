@@ -1,4 +1,5 @@
-import { ExperienceBar } from './Componentes/ExperienceBar'
+import Head from 'next/head';
+import { ExperienceBar } from './Componentes/ExperienceBar';
 
 export default function Home() {
   return (

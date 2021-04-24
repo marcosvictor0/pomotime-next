@@ -1,3 +1,5 @@
+import {} from '../styles/components/ExperienceBar.module.css';
+
 export function ExperienceBar() {
     return (
         <header className="experience-bar">
