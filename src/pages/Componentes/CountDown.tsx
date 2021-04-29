@@ -22,6 +22,7 @@ export function CountDown() {
             }, 1000)
         }
     }, [active, time])
+    //essa função faz o contador la no site.
 
     return (
     <div>
