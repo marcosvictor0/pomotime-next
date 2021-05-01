@@ -58,10 +58,8 @@ export function CountDown() {
             >
                Ciclo encerrado
             </button> 
-        ) : null //isso faz com qu eele tenha apenas um IF, a outra forma seria que no lugar do '?', colocaria um && e tirasse o : null.
-    }
-
-
+        ) : ( 
+    <>
         { isActive ? 
         (
             <button 
@@ -73,15 +71,18 @@ export function CountDown() {
             </button> 
         )
             :
-
-        ( <button 
+        ( 
+            <button 
                 type="button" 
                 className={styles.countDownButton}
                 onClick={startCountDown}
             >
             Iniciar um ciclo
-        </button>
+            </button>
         )
+    }
+    </>
+            ) //isso faz com qu eele tenha apenas um IF, a outra forma seria que no lugar do '?', colocaria um && e tirasse o : null.
     }
     </div>
     );
