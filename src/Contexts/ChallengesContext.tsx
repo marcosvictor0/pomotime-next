@@ -15,6 +15,8 @@ interface ChallengesContextData {
     levelUp: () => void;
     startNewChallenge: () => void;
     activeChallenge: Challenge;
+    resetChallenge: () => void;
+    experienceToNextLevel: number;
 }
 
 //esse ReactNode, vai aceitar qualquer elemento  filho como children, podendo ser um componente, text, tag html.
@@ -31,6 +33,8 @@ export function ChallengesProvider( { children }: ChallengesProviderProps ) {
     
     const [activeChallenge, setActiveChallenge] = useState(null);
 
+    const experienceToNextLevel = Math.pow((level + 1) * 4 , 2);
+
     function levelUp() {
     setLevel(level + 1 );
     }
@@ -40,6 +44,10 @@ export function ChallengesProvider( { children }: ChallengesProviderProps ) {
         const challenge = challenges[randomChallengeIndex];
 
         setActiveChallenge(challenge)
+    }
+
+    function resetChallenge() {
+        setActiveChallenge(null);
     }
 
     //quanto se tem 2 {} é pq vai ser enviado um objeto.
@@ -53,6 +61,8 @@ export function ChallengesProvider( { children }: ChallengesProviderProps ) {
         levelUp,
         startNewChallenge,
         activeChallenge,
+        resetChallenge,
+        experienceToNextLevel,
         
         }}> 
             { children }
