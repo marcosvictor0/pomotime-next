@@ -1,4 +1,12 @@
 import { createContext, useState, ReactNode } from 'react';
+import challenges from '../../Challenges.json';
+
+
+interface Challenge {
+    type: 'body' | 'eye';
+    description: string;
+    amount: number
+}
 
 interface ChallengesContextData {
     level: number;
@@ -6,6 +14,7 @@ interface ChallengesContextData {
     challengesCompleted: number;
     levelUp: () => void;
     startNewChallenge: () => void;
+    activeChallenge: Challenge;
 }
 
 //esse ReactNode, vai aceitar qualquer elemento  filho como children, podendo ser um componente, text, tag html.
@@ -20,13 +29,17 @@ export function ChallengesProvider( { children }: ChallengesProviderProps ) {
     const [currentExperince, setCurrentExperience] = useState(0);
     const [challengesCompleted, setChallengesCompleted] = useState(0);
     
+    const [activeChallenge, setActiveChallenge] = useState(null);
 
     function levelUp() {
     setLevel(level + 1 );
     }
 
     function startNewChallenge() {
-        console.log('deu certo');
+        const randomChallengeIndex = Math.floor(Math.random() * challenges.length)
+        const challenge = challenges[randomChallengeIndex];
+
+        setActiveChallenge(challenge)
     }
 
     //quanto se tem 2 {} é pq vai ser enviado um objeto.
@@ -39,7 +52,7 @@ export function ChallengesProvider( { children }: ChallengesProviderProps ) {
         challengesCompleted, 
         levelUp,
         startNewChallenge,
-        
+        activeChallenge,
         
         }}> 
             { children }
