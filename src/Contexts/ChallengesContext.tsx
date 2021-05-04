@@ -17,6 +17,7 @@ interface ChallengesContextData {
     activeChallenge: Challenge;
     resetChallenge: () => void;
     experienceToNextLevel: number;
+    completeChallenge: () => void;
 }
 
 //esse ReactNode, vai aceitar qualquer elemento  filho como children, podendo ser um componente, text, tag html.
@@ -45,6 +46,25 @@ export function ChallengesProvider( { children }: ChallengesProviderProps ) {
 
         setActiveChallenge(challenge)
     }
+//(!activeChallenge) { se eu n tiver com o challenge ativo}
+    function completeChallenge() {
+        if (!activeChallenge) {
+            return; //retorno vazio
+        }
+
+        const { amount } = activeChallenge;
+
+        let finalExperience = currentExperince + amount;
+
+        if ( finalExperience >= experienceToNextLevel ) {
+            finalExperience = finalExperience - experienceToNextLevel;
+            levelUp();
+        }
+
+        setCurrentExperience(finalExperience);
+        setActiveChallenge(null);
+        setChallengesCompleted(challengesCompleted + 1 );
+    }
 
     function resetChallenge() {
         setActiveChallenge(null);
@@ -63,6 +83,7 @@ export function ChallengesProvider( { children }: ChallengesProviderProps ) {
         activeChallenge,
         resetChallenge,
         experienceToNextLevel,
+        completeChallenge,
         
         }}> 
             { children }

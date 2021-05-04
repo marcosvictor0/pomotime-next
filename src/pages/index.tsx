@@ -7,6 +7,7 @@ import { Profile } from './Componentes/Profile';
 import { ChallengeBox } from './Componentes/ChallengeBox';
 
 import styles from './styles/pages/Home.module.css';
+import { CountDownProvider } from '../Contexts/CountDownContext';
 
 
 
@@ -17,17 +18,18 @@ export default function Home() {
         <title>Inicio | PomoTime</title>
       </Head>
       <ExperienceBar/>
-
-      <section>
-        <div>
-          <Profile/>
-          <CompletedChallenges/>
-          <CountDown/>
-        </div>
-        <div>
-          <ChallengeBox/>
-        </div>
-      </section>
+      <CountDownProvider>
+        <section>
+          <div>
+            <Profile/>
+            <CompletedChallenges/>
+            <CountDown/>
+          </div>
+          <div>
+           <ChallengeBox/>
+          </div>
+        </section>
+      </CountDownProvider>
     </div>
   )
 }
