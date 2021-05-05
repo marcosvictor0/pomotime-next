@@ -1,4 +1,6 @@
 import { createContext, useState, ReactNode, useEffect } from 'react';
+import Cookies from "js-cookie";
+//biblioteca js pura, ele so da uma api mais amigavel para eu poder buscar os dados, escrever.
 import challenges from '../../Challenges.json';
 
 
@@ -39,6 +41,13 @@ export function ChallengesProvider( { children }: ChallengesProviderProps ) {
     useEffect(() => {
         Notification.requestPermission();
     }, [])
+
+    useEffect(() => {
+        Cookies.set('level', String(level));
+        Cookies.set('currentExperince', String(currentExperince));
+        Cookies.set('challengesCompleted', String(challengesCompleted));
+    }, [level,currentExperince,challengesCompleted])
+    //ele vai disparar uma função sempre que algo dentro do array mudar.
 
     function levelUp() {
     setLevel(level + 1 );
