@@ -22,6 +22,7 @@ interface ChallengesContextData {
     resetChallenge: () => void;
     experienceToNextLevel: number;
     completeChallenge: () => void;
+    closeLevelUpModal: () => void;
 }
 
 //esse ReactNode, vai aceitar qualquer elemento  filho como children, podendo ser um componente, text, tag html.
@@ -38,7 +39,8 @@ export function ChallengesProvider( { children, ...rest }: ChallengesProviderPro
     const [level, setLevel] = useState(rest.level ?? 1);
     const [currentExperince, setCurrentExperience] = useState(rest.currentExperince ?? 0);
     const [challengesCompleted, setChallengesCompleted] = useState(rest.challengesCompleted ?? 0);
-    
+    const [isLevelUpModalOpen, setIsLevelUpModalOpen] = useState(false);
+
     const [activeChallenge, setActiveChallenge] = useState(null);
 
     const experienceToNextLevel = Math.pow((level + 1) * 4 , 2);
@@ -56,6 +58,11 @@ export function ChallengesProvider( { children, ...rest }: ChallengesProviderPro
 
     function levelUp() {
     setLevel(level + 1 );
+    setIsLevelUpModalOpen(true);
+    }
+
+    function closeLevelUpModal() {
+        setIsLevelUpModalOpen(false);
     }
 
     function startNewChallenge() {
@@ -110,11 +117,13 @@ export function ChallengesProvider( { children, ...rest }: ChallengesProviderPro
         resetChallenge,
         experienceToNextLevel,
         completeChallenge,
+        closeLevelUpModal,
         
         }}> 
             { children }
-            
-            <LevelUpModal />
+
+           {isLevelUpModalOpen && <LevelUpModal />}
         </ChallengesContext.Provider>
     )
 }
+//&& (ter um  if sem o else)
