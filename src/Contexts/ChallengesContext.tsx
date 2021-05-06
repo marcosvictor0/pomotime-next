@@ -25,14 +25,17 @@ interface ChallengesContextData {
 //esse ReactNode, vai aceitar qualquer elemento  filho como children, podendo ser um componente, text, tag html.
 interface ChallengesProviderProps{
     children: ReactNode;
+    level: number;
+    currentExperince:number;
+    challengesCompleted: number;
 }
 
 export const ChallengesContext = createContext({} as ChallengesContextData);
 
-export function ChallengesProvider( { children }: ChallengesProviderProps ) {
-    const [level, setLevel] = useState(1);
-    const [currentExperince, setCurrentExperience] = useState(0);
-    const [challengesCompleted, setChallengesCompleted] = useState(0);
+export function ChallengesProvider( { children, ...rest }: ChallengesProviderProps ) {
+    const [level, setLevel] = useState(rest.level ?? 1);
+    const [currentExperince, setCurrentExperience] = useState(rest.currentExperince ?? 0);
+    const [challengesCompleted, setChallengesCompleted] = useState(rest.challengesCompleted ?? 0);
     
     const [activeChallenge, setActiveChallenge] = useState(null);
 

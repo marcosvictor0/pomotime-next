@@ -9,12 +9,22 @@ import { ChallengeBox } from './Componentes/ChallengeBox';
 
 import styles from './styles/pages/Home.module.css';
 import { CountDownProvider } from '../Contexts/CountDownContext';
+import { ChallengesProvider } from '../Contexts/ChallengesContext';
 
+interface HomeProps{
+  level: number;
+  currentExperince:number;
+  challengesCompleted: number;
+}
 
-
-export default function Home(props) {
+export default function Home(props: HomeProps) {
   console.log(props);
+
   return (
+    <ChallengesProvider 
+    level={props.level} 
+    currentExperince={props.currentExperince} 
+    challengesCompleted={props.challengesCompleted}>
     <div className={ styles.container}>
       <Head>
         <title>Inicio | PomoTime</title>
@@ -33,6 +43,7 @@ export default function Home(props) {
         </section>
       </CountDownProvider>
     </div>
+    </ChallengesProvider>
   )
 }
 
@@ -49,7 +60,11 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   //console.log(user)
 
   return {
-    props: {level, currentExperince, challengesCompleted}
+    props: {
+      level: Number(level),
+      currentExperince: Number(currentExperince),
+      challengesCompleted: Number(challengesCompleted),
+    }
   }
 }
 // quando eu declaro essa função dentro de uma página do Next eu consigo manipular quais dados serão repassados da camada do NextJs
