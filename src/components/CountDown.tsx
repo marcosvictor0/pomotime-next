@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { CountDownContext } from '../../Contexts/CountDownContext';
+import { CountDownContext } from '../Contexts/CountDownContext';
 import styles from '../styles/components/CountDown.module.css';
 
 
