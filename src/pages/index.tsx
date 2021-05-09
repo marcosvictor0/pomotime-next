@@ -8,8 +8,8 @@ import { Profile } from '../components/Profile';
 import { ChallengeBox } from '../components/ChallengeBox';
 
 import styles from './styles/pages/Home.module.css';
-import { CountDownProvider } from '../Contexts/CountDownContext';
-import { ChallengesProvider } from '../Contexts/ChallengesContext';
+import { CountDownProvider } from '../contexts/CountDownContext';
+import { ChallengesProvider } from '../contexts/ChallengesContext';
 
 interface HomeProps{
   level: number;
