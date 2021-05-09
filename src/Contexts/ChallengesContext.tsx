@@ -1,7 +1,7 @@
 import { createContext, useState, ReactNode, useEffect } from 'react';
 import Cookies from "js-cookie";
 //biblioteca js pura, ele so da uma api mais amigavel para eu poder buscar os dados, escrever.
-import { LevelUpModal } from '../pages/Componentes/LevelUpModal';
+import { LevelUpModal } from '../pages/Component/LevelUpModal';
 import challenges from '../../Challenges.json';
 
 

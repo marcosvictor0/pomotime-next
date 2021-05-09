@@ -1,11 +1,11 @@
 import Head from 'next/head';
 import { GetServerSideProps } from 'next';
 
-import { CompletedChallenges } from './Componentes/CompletedChallenges';
-import { CountDown } from './Componentes/CountDown';
-import { ExperienceBar } from './Componentes/ExperienceBar';
-import { Profile } from './Componentes/Profile';
-import { ChallengeBox } from './Componentes/ChallengeBox';
+import { CompletedChallenges } from './Component/CompletedChallenges';
+import { CountDown } from './Component/CountDown';
+import { ExperienceBar } from './Component/ExperienceBar';
+import { Profile } from './Component/Profile';
+import { ChallengeBox } from './Component/ChallengeBox';
 
 import styles from './styles/pages/Home.module.css';
 import { CountDownProvider } from '../Contexts/CountDownContext';
